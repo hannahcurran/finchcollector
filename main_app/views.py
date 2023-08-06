@@ -31,11 +31,11 @@ def finches_detail(request, finch_id):
     finch = Finch.objects.get(id=finch_id)
     # First, create a list of the toy ids that the cat DOES have
     id_list = finch.toys.all().values_list('id')
-  # Query for the toys that the cat doesn't have
+  # Query for the toys that the fiinch doesn't have
   # by using the exclude() method vs. the filter() method
     toys_finch_doesnt_have = Toy.objects.exclude(id__in=id_list)
     feeding_form = FeedingForm()
-    return render(request, 'finches/detail.html', { 'finch': finch, 'feeding_form': feeding_form, 'toys': toys_finch_doesnt_have })
+    return render(request, 'finches/detail.html', { 'finch': finch, 'feeding_form': feeding_form })
 
 class FinchCreate(CreateView):
     model = Finch
